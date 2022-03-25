@@ -50,9 +50,9 @@
 }
 
 .dark-mode > .App > .todo-input > button:hover {
-  color: rgba(255,255,255,0.4);
-  background: rgba(0,0,0,0.8);
-  border: 1px solid rgba(255,255,255,0.4);
+  color: black;
+  background: white;
+  transition: all linear 0.1s;
 }
 
 .dark-mode > .App > .todo-input > input {
@@ -109,8 +109,8 @@
 .App > .todo-input > button:hover {
   color: white;
   background: dodgerblue;
-  transition: all linear 0.1s;
   cursor: pointer;
+  transition: all linear 0.1s;
 }
 
 .App > ul {
@@ -146,7 +146,6 @@
   color: orangered;
   outline: none;
   border: 1px solid orangered;
-  transition: all linear 0.1s;
   border-radius: 5px;
   display: flex;
   justify-content: center;
