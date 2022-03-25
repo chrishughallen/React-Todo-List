@@ -1,6 +1,8 @@
-# Getting Started with Create React App
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## View Application on Heroku
+[https://react-todo-one.herokuapp.com/](https://react-todo-one.herokuapp.com/)
+
 
 ## Available Scripts
 
