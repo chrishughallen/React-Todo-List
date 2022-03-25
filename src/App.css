@@ -24,7 +24,8 @@
 }
 
 .App > h1 {
-  text-align: right;
+  display: flex;
+  justify-content: space-between;
 }
 
 .App > .todo-input {

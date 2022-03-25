@@ -3,7 +3,12 @@ import './App.css';
 import {setState, useState, useEffect} from 'react';
 
 function App() {
-  const [todoList, setTodoList] = useState([{id: Math.floor(Math.random()*1000), value: "Add your first Todo!", completed: false}])
+  const [todoList, setTodoList] = useState(
+    [
+      {id: Math.floor(Math.random()*1000), value: "Add your first Todo!", completed: false},
+      {id: Math.floor(Math.random()*1000), value: "Tap a todo to toggle status", completed: true}
+    ]
+    )
   const [newItem, setNewItem] = useState("")
   let outstandingTasks = todoList.filter((item) => item.completed == false)
   let completedTasks = todoList.filter((item) => item.completed)
@@ -33,8 +38,8 @@ function App() {
   return (
     <div className="wrapper">
       <div className="App">
-        {todoList.length == 0 && <h1>0 / 0</h1>}
-        {todoList.length >= 1 && <h1> {completedTasks.length} / {todoList.length}</h1>}
+        {todoList.length == 0 && <h1><span>To Dos</span><span>0 / 0</span></h1>}
+        {todoList.length >= 1 && <h1><span>To Dos</span> <span>{completedTasks.length} / {todoList.length}</span></h1>}
           <div className="todo-input">
             <input
               autoComplete="off"
