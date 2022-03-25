@@ -10,6 +10,7 @@ function App() {
     ]
     )
   const [newItem, setNewItem] = useState("")
+  const [darkMode, setDarkMode] = useState(false)
   let outstandingTasks = todoList.filter((item) => item.completed == false)
   let completedTasks = todoList.filter((item) => item.completed)
   const [outstandingCount, setOutstandingCount] = useState(todoList.filter((item) => item.completed))
@@ -35,9 +36,12 @@ function App() {
     })
   }
 
+  const css_wrapper = darkMode ? "wrapper dark-mode" : "wrapper"
+
   return (
-    <div className="wrapper">
+    <div className={css_wrapper}>
       <div className="App">
+        <button className='dark-mode-toggle' onClick={() => setDarkMode((prev) => !prev)}>{darkMode ? "Light Mode" : "Dark Mode"}</button>
         {todoList.length == 0 && <h1><span>To Dos</span><span>0 / 0</span></h1>}
         {todoList.length >= 1 && <h1><span>To Dos</span> <span>{completedTasks.length} / {todoList.length}</span></h1>}
           <div className="todo-input">

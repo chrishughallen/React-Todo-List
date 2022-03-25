@@ -8,6 +8,56 @@
 .wrapper {
   display: grid;
   grid-template-columns: 1fr minmax(300px, 600px) 1fr;
+  min-height: 100vh;
+  overflow: scroll;
+}
+
+.dark-mode {
+  background: black;
+}
+
+.dark-mode-toggle {
+  background: transparent;
+  border-radius: 5px;
+  display: inline-flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 1rem 0;
+  outline: none;
+  border: none;
+}
+
+.dark-mode-toggle:hover {
+  cursor: pointer;
+}
+
+.dark-mode > .App > .dark-mode-toggle {
+  color: white;
+}
+
+.dark-mode > .App > h1 {
+  color: white;
+}
+
+.dark-mode > .App > ul > li {
+  color: white;
+}
+
+.dark-mode > .App > .todo-input > button {
+  color: white;
+  background: rgba(0,0,0,0.8);
+  border: 1px solid #fff;
+}
+
+.dark-mode > .App > .todo-input > button:hover {
+  color: rgba(255,255,255,0.4);
+  background: rgba(0,0,0,0.8);
+  border: 1px solid rgba(255,255,255,0.4);
+}
+
+.dark-mode > .App > .todo-input > input {
+  background: black;
+  color: white;
 }
 
 @media (max-width: 600px) {
@@ -39,17 +89,16 @@
   padding: 1rem;
   width:100%;
   border-radius: 5px;
+  font-size: 1.3rem;
 }
 
 .App > .todo-input > button {
   padding: 1rem;
   border-radius: 5px;
   background: transparent;
-  
   color: dodgerblue;
   outline: none;
   border: 1px solid dodgerblue;
-  transition: all linear 0.1s;
   display: flex;
   justify-content: center;
   align-items: center;
