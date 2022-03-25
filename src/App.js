@@ -5,8 +5,8 @@ import {setState, useState, useEffect} from 'react';
 function App() {
   const [todoList, setTodoList] = useState(
     [
-      {id: Math.floor(Math.random()*1000), value: "Add your first Todo!", completed: false},
-      {id: Math.floor(Math.random()*1000), value: "Tap a todo to toggle status", completed: true}
+      {id: Math.floor(Math.random()*10000), value: "Add your first Todo!", completed: false},
+      {id: Math.floor(Math.random()*10000), value: "Tap a todo to toggle status", completed: true}
     ]
     )
   const [newItem, setNewItem] = useState("")
