@@ -1,38 +1,113 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr minmax(300px, 600px) 1fr;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@media (max-width: 600px) {
+  .wrapper {
+    grid-template-columns: 20px 1fr 20px;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App {
+  grid-column: 2;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin-top: 8rem;
+}
+
+.App > h1 {
+  text-align: right;
+}
+
+.App > .todo-input {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.3rem;
+  justify-content: space-between;
+}
+
+.App > .todo-input > input {
+  padding: 1rem;
+  width:100%;
+  border-radius: 5px;
+}
+
+.App > .todo-input > button {
+  padding: 1rem;
+  border-radius: 5px;
+  background: transparent;
+  
+  color: dodgerblue;
+  outline: none;
+  border: 1px solid dodgerblue;
+  transition: all linear 0.1s;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  font-size: 1rem;
+  min-width: 50px;
+}
+
+.App > .todo-input > button:hover {
   color: white;
+  background: dodgerblue;
+  transition: all linear 0.1s;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.App > ul {
+  list-style: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App > ul > li {
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  border-bottom: 1px solid lightgrey;
+  padding: 0.5rem 0;
+}
+
+.App > ul > li > span {
+  margin: 0 0.3rem 0 0.5rem;
+  font-size: 1.6rem;
+}
+
+.App > ul > li > span:hover {
+  cursor: pointer;
+}
+
+.completed-todo > span {
+  text-decoration: line-through;
+  opacity: 0.4;
+}
+
+.delete-button {
+  padding: 1rem;
+  background: transparent;
+  color: orangered;
+  outline: none;
+  border: 1px solid orangered;
+  transition: all linear 0.1s;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  min-width: 50px;
+}
+
+.delete-button:hover {
+  background: orangered;
+  color: white;
+  cursor: pointer;
+  transition: all linear 0.1s;
 }
