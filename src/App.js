@@ -9,7 +9,6 @@ function App() {
   })
 
   localStorage.setItem('todos', JSON.stringify(todoList))
-  console.log(localStorage)
   const [newItem, setNewItem] = useState("")
   const [dark, setDark] = useState(
     localStorage.getItem('dark-mode') === 'true'
@@ -20,9 +19,6 @@ function App() {
   const [outstandingCount, setOutstandingCount] = useState(todoList.filter((item) => item.completed))
 
   const addItem = () => {
-    if(!newItem) {
-      return alert("Can\'t save an empty item!")
-    }
     setTodoList((prevList) => [...prevList, {id: Math.floor(Math.random() * 1000),value: newItem, completed: false}])
     setNewItem("")
   }
@@ -61,12 +57,12 @@ function App() {
               onChange={(e) => setNewItem(e.target.value)}
               value={newItem} 
             />
-            <button onClick={addItem}>+</button>
+            <button disabled={!newItem} className={newItem ? 'fill' : '' } onClick={addItem}>+</button>
           </div>
           
         <ul>
           {todoList.map((todo) => {
-            let css = todo.completed ? "completed-todo" : "uncompleted-todo"
+            let css = todo.completed ? "completed-todo" : "incomplete-todo"
             return (
               <li className={css} key={todo.id}>
                 <span onClick={() => toggleItem(todo.id)}>{todo.value}</span>

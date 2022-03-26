@@ -41,6 +41,7 @@
 
 .dark-mode > .App > ul > li {
   color: white;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
 }
 
 .dark-mode > .App > .todo-input > button {
@@ -58,6 +59,16 @@
 .dark-mode > .App > .todo-input > input {
   background: black;
   color: white;
+  border: none;
+}
+
+.dark-mode > .App > .todo-input > button {
+  border: none;
+}
+
+.dark-mode > .App > .todo-input > button.fill {
+  border: 1px solid rgba(255,255,255,0.4);
+  background: transparent;
 }
 
 @media (max-width: 600px) {
@@ -86,31 +97,34 @@
 }
 
 .App > .todo-input > input {
-  padding: 1rem;
+  padding: 1rem 1rem 1rem 0;
   width:100%;
   border-radius: 5px;
   font-size: 1.3rem;
+  border: none;
+}
+
+.App > .todo-input > input:focus {
+  outline: none;
 }
 
 .App > .todo-input > button {
   padding: 1rem;
-  border-radius: 5px;
   background: transparent;
-  color: dodgerblue;
   outline: none;
-  border: 1px solid dodgerblue;
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1rem;
   min-width: 50px;
+  opacity: 0.3;
 }
 
-.App > .todo-input > button:hover {
-  color: white;
-  background: dodgerblue;
+.App > .todo-input > button.fill {
   cursor: pointer;
   transition: all linear 0.1s;
+  opacity: 1;
 }
 
 .App > ul {
@@ -118,17 +132,14 @@
 }
 
 .App > ul > li {
-  margin: 1rem 0;
   display: grid;
   grid-template-columns: 1fr auto auto;
   align-items: center;
-  border-bottom: 1px solid lightgrey;
-  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .App > ul > li > span {
-  margin: 0 0.3rem 0 0.5rem;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
 }
 
 .App > ul > li > span:hover {
@@ -145,8 +156,7 @@
   background: transparent;
   color: orangered;
   outline: none;
-  border: 1px solid orangered;
-  border-radius: 5px;
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;
