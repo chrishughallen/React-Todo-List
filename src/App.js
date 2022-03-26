@@ -1,18 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
-import {setState, useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 
 function App() {
-  const [todoList, setTodoList] = useState(
-    [
-      {id: Math.floor(Math.random()*10000), value: "Add your first Todo!", completed: false},
-      {id: Math.floor(Math.random()*10000), value: "Tap a todo to toggle status", completed: true}
-    ]
-    )
+  const [todoList, setTodoList] = useState(() => {
+    const savedTodos = localStorage.getItem("todos");
+    return savedTodos ? JSON.parse(savedTodos) : []
+  })
+
+  localStorage.setItem('todos', JSON.stringify(todoList))
+  console.log(localStorage)
   const [newItem, setNewItem] = useState("")
-  const [darkMode, setDarkMode] = useState(false)
+  const [dark, setDark] = useState(
+    localStorage.getItem('dark-mode') === 'true'
+  );
   let outstandingTasks = todoList.filter((item) => item.completed == false)
   let completedTasks = todoList.filter((item) => item.completed)
+
   const [outstandingCount, setOutstandingCount] = useState(todoList.filter((item) => item.completed))
 
   const addItem = () => {
@@ -20,7 +24,6 @@ function App() {
       return alert("Can\'t save an empty item!")
     }
     setTodoList((prevList) => [...prevList, {id: Math.floor(Math.random() * 1000),value: newItem, completed: false}])
-
     setNewItem("")
   }
 
@@ -36,12 +39,17 @@ function App() {
     })
   }
 
-  const css_wrapper = darkMode ? "wrapper dark-mode" : "wrapper"
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todoList));
+    localStorage.setItem('dark-mode', dark);
+  }, [dark]);
+
+  const css_wrapper = dark ? "wrapper dark-mode" : "wrapper"
 
   return (
     <div className={css_wrapper}>
       <div className="App">
-        <button className='dark-mode-toggle' onClick={() => setDarkMode((prev) => !prev)}>{darkMode ? "Light Mode" : "Dark Mode"}</button>
+        <button className='dark-mode-toggle' onClick={() => setDark((prev) => !prev)}>{dark ? "Light Mode" : "Dark Mode"}</button>
         {todoList.length == 0 && <h1><span>To Dos</span><span>0 / 0</span></h1>}
         {todoList.length >= 1 && <h1><span>To Dos</span> <span>{completedTasks.length} / {todoList.length}</span></h1>}
           <div className="todo-input">
