@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import {useState, useEffect} from 'react';
+import Nav from './Nav.js'
 
 function App() {
   const [todoList, setTodoList] = useState(() => {
@@ -13,10 +14,13 @@ function App() {
   const [dark, setDark] = useState(
     localStorage.getItem('dark-mode') === 'true'
   );
-  let outstandingTasks = todoList.filter((item) => item.completed == false)
-  let completedTasks = todoList.filter((item) => item.completed)
 
-  const [outstandingCount, setOutstandingCount] = useState(todoList.filter((item) => item.completed))
+  const handleInput = (e) => {
+    setNewItem(e.target.value)
+    if (e.target.value && e.key === 'Enter') {
+      addItem(newItem)
+    }
+  }
 
   const addItem = () => {
     setTodoList((prevList) => [...prevList, {id: Math.floor(Math.random() * 1000),value: newItem, completed: false}])
@@ -43,36 +47,41 @@ function App() {
   const css_wrapper = dark ? "wrapper dark-mode" : "wrapper"
 
   return (
-    <div className={css_wrapper}>
-      <div className="App">
-        <button className='dark-mode-toggle' onClick={() => setDark((prev) => !prev)}>{dark ? "Light Mode" : "Dark Mode"}</button>
-        {todoList.length == 0 && <h1><span>To Dos</span><span>0 / 0</span></h1>}
-        {todoList.length >= 1 && <h1><span>To Dos</span> <span>{completedTasks.length} / {todoList.length}</span></h1>}
-          <div className="todo-input">
-            <input
-              autoComplete="off"
-              placeholder="new todo"
-              type="text"
-              name="todo"
-              onChange={(e) => setNewItem(e.target.value)}
-              value={newItem} 
-            />
-            <button disabled={!newItem} className={newItem ? 'fill' : '' } onClick={addItem}>+</button>
-          </div>
-          
-        <ul>
-          {todoList.map((todo) => {
-            let css = todo.completed ? "completed-todo" : "incomplete-todo"
-            return (
-              <li className={css} key={todo.id}>
-                <span onClick={() => toggleItem(todo.id)}>{todo.value}</span>
-                <button className="delete-button" onClick={() => deleteItem(todo.id)}>-</button>
-              </li>
-            )
-        })}
-        </ul>
+    <main>
+      <div className={css_wrapper}>
+        <Nav 
+          dark={dark} 
+          toggle={() => setDark((prev) => !prev)}
+          todos={todoList}
+        />
+        <div className="App">
+            <div className="todo-input">
+              <input
+                autoComplete="off"
+                placeholder="new todo"
+                type="text"
+                name="todo"
+                onChange={(e) => handleInput(e)}
+                onKeyUp={(e) => handleInput(e)}
+                value={newItem}
+              />
+              <button disabled={!newItem} className={newItem ? 'fill' : '' } onClick={addItem}>+</button>
+            </div>
+            
+          <ul>
+            {todoList.map((todo) => {
+              let css = todo.completed ? "completed-todo" : "incomplete-todo"
+              return (
+                <li className={css} key={todo.id}>
+                  <span onClick={() => toggleItem(todo.id)}>{todo.value}</span>
+                  <button className="delete-button" onClick={() => deleteItem(todo.id)}>-</button>
+                </li>
+              )
+          })}
+          </ul>
+        </div>
       </div>
-    </div>
+    </main>
   );
 }
 

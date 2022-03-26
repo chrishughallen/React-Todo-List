@@ -10,6 +10,7 @@
   grid-template-columns: 1fr minmax(300px, 600px) 1fr;
   min-height: 100vh;
   overflow: scroll;
+  grid-template-rows: auto 1fr;
 }
 
 .dark-mode {
@@ -40,8 +41,12 @@
 }
 
 .dark-mode > .App > ul > li {
-  color: white;
+  color: white; 
   border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.dark-mode > .App > ul > li > button {
+  color: white;
 }
 
 .dark-mode > .App > .todo-input > button {
@@ -50,25 +55,23 @@
   border: 1px solid #fff;
 }
 
-.dark-mode > .App > .todo-input > button:hover {
-  color: black;
-  background: white;
-  transition: all linear 0.1s;
-}
-
 .dark-mode > .App > .todo-input > input {
   background: black;
   color: white;
   border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.7);
 }
 
 .dark-mode > .App > .todo-input > button {
   border: none;
 }
 
-.dark-mode > .App > .todo-input > button.fill {
-  border: 1px solid rgba(255,255,255,0.4);
-  background: transparent;
+.dark-mode > .App > .todo-input > button:disabled {
+  opacity: 0.7;
+}
+
+.dark-mode > .delete-button {
+  color: white;
 }
 
 @media (max-width: 600px) {
@@ -92,16 +95,15 @@
 .App > .todo-input {
   margin-top: 1rem;
   display: flex;
-  gap: 0.3rem;
   justify-content: space-between;
 }
 
 .App > .todo-input > input {
   padding: 1rem 1rem 1rem 0;
   width:100%;
-  border-radius: 5px;
   font-size: 1.3rem;
   border: none;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
 }
 
 .App > .todo-input > input:focus {
@@ -114,11 +116,10 @@
   outline: none;
   border: none;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   font-size: 1rem;
   min-width: 50px;
-  opacity: 0.3;
 }
 
 .App > .todo-input > button.fill {
@@ -129,17 +130,19 @@
 
 .App > ul {
   list-style: none;
+  margin-top: 1rem;
 }
 
 .App > ul > li {
   display: grid;
   grid-template-columns: 1fr auto auto;
-  align-items: center;
   border-bottom: 1px solid rgba(0,0,0,0.1);
+  align-items: center;
 }
 
 .App > ul > li > span {
   font-size: 1.2rem;
+  padding-bottom: 0.5rem;
 }
 
 .App > ul > li > span:hover {
@@ -154,19 +157,19 @@
 .delete-button {
   padding: 1rem;
   background: transparent;
-  color: orangered;
+  color: black;
   outline: none;
   border: none;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   font-size: 1rem;
   min-width: 50px;
+  opacity: 0.7;
 }
 
 .delete-button:hover {
-  background: orangered;
-  color: white;
+  opacity: 1;
   cursor: pointer;
   transition: all linear 0.1s;
 }

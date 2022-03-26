@@ -1,0 +1,17 @@
+nav {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  grid-column: 2;
+  align-items: center;
+}
+
+nav.dark > button {
+  color: white;
+}
+
+nav.dark > span {
+  color: white;
+}
