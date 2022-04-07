@@ -140,7 +140,9 @@
   align-items: center;
 }
 
-.App > ul > li > span {
+.App > ul > li > input {
+  border: none;
+  outline: none;
   font-size: 1.2rem;
   padding-bottom: 0.5rem;
 }
